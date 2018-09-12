@@ -1,0 +1,16 @@
+{
+  "name": "my-pokemon-base-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+      "start": "node ."
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "ddos-express": "^0.1.7",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.14"
+  }
+}
