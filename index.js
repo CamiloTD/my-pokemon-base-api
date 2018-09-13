@@ -38,7 +38,20 @@ app.post('/getTeam', (rq, rs) => {
     Team.find({ _id: rq.body.id }, (err, data) => {
         if(err) rs.json({ status: "error", type: "DATABASE_ERROR" });
         else rs.json(data);
+    }).select('-pass');
+});
+
+app.post('/updateTeam', (rq, rs) => {
+    let { pass, team } = rq.body;
+    let { _id } = team;
+    
+    Team.update({ _id, pass }, { $set: team }, (err, data) => {
+        if(err) return rs.json({ status: "error", type: "DATABASE_ERROR" });
+        if(data.n === 0) return rs.json({ status: "error", type: "INVALID_PASSWORD" });
+        
+        rs.json({ status: "success" });
     });
+
 });
 
 app.listen('60000', () => console.log('Api running at port: 60000'));

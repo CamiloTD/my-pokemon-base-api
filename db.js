@@ -7,6 +7,7 @@ const Schema = Mongoose.Schema;
 const Pokemon = new Schema({
     specie: { type: String, required: true },
     nick  : String,
+    level: Number,
     
     ability: { type: String, required: true },
     item   : String,
@@ -25,9 +26,13 @@ const Pokemon = new Schema({
 const Team = new Schema({
     name: { type: String, required: true },
     author: String,
+    pass: String,
     version: { type: Number, default: 1 },
     pokemon: { type: [Pokemon], required: true },
-    notes: [Schema.Types.Mixed]
+    notes: {
+        threats: [String],
+        strengths: [String]
+    }
 });
 
 exports.Pokemon = Mongoose.model('Pokemon', Pokemon);
